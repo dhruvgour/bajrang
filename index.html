@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poster Generator</title>
+    <style>
+        #poster {
+            position: relative;
+            width: 500px;
+            height: 700px;
+            background-image: url('1.jpeg');
+            background-size: cover;
+        }
+        #profile-pic {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        #user-name {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="poster">
+        <input type="file" id="image-input" accept="image/*">
+        <input type="text" id="name-input" placeholder="Your Name">
+    </div>
+
+    <script>
+        const poster = document.getElementById('poster');
+        const imageInput = document.getElementById('image-input');
+        const nameInput = document.getElementById('name-input');
+
+        imageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const profilePic = document.createElement('img');
+                    profilePic.src = e.target.result;
+                    profilePic.id = 'profile-pic';
+                    poster.appendChild(profilePic);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        nameInput.addEventListener('input', (e) => {
+            const name = e.target.value;
+            const nameElement = document.getElementById('user-name');
+            nameElement.textContent = name;
+        });
+    </script>
+</body>
+</html>
