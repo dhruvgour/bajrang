@@ -20,7 +20,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>वीर बजरंगी सेवा समिति, नवा शहर</h1>
+        <h1>वीर बजरंगी सेवा समिति, नावा शहर</h1>
         <h2>हनुमान चालीसा के लिए पोस्टर बनाएं</h2>
         
         <form id="posterForm" enctype="multipart/form-data">
@@ -40,12 +40,17 @@
         <div id="posterPreview" class="mx-auto mt-4">
             <!-- Generated poster will be displayed here -->
         </div>
+
+        <!-- Download button in Hindi -->
+        <a id="downloadButton" class="btn btn-success" style="display: none; text-decoration: none; color: white;">
+            डाउनलोड करें
+        </a>
     </div>
 
     <script>
         // Preload the default background poster image
         const defaultPosterImage = new Image();
-        defaultPosterImage.src = "1.jpeg";
+        defaultPosterImage.src = "1.jpEg";
 
         document.getElementById("posterForm").addEventListener("submit", function (e) {
             e.preventDefault();
@@ -74,8 +79,14 @@
                     // Draw the default background poster image
                     ctx.drawImage(defaultPosterImage, 0, 0, 500, 700);
 
-                    // Draw the uploaded profile photo
-                    ctx.drawImage(image, 0, 0, 150, 180, 350, 520, 150, 180);
+                    // Calculate the position and size of the profile photo within the poster
+                    const photoWidth = 150;
+                    const photoHeight = 180;
+                    const photoX = (canvas.width - photoWidth) / 2;
+                    const photoY = (canvas.height - photoHeight - 20); // Adjusted for 20px bottom margin
+
+                    // Draw the uploaded profile photo scaled to fit
+                    ctx.drawImage(image, photoX, photoY, photoWidth, photoHeight);
 
                     // Add the entered name to the poster
                     ctx.font = "bold 20px Arial";
@@ -90,6 +101,11 @@
                     // Display the poster on the page
                     document.getElementById("posterPreview").innerHTML = "";
                     document.getElementById("posterPreview").appendChild(posterImage);
+
+                    // Show the download button and set the poster as the download link
+                    const downloadButton = document.getElementById("downloadButton");
+                    downloadButton.style.display = "block";
+                    downloadButton.href = posterImage.src;
                 };
             };
 
