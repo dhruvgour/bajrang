@@ -90,7 +90,7 @@
 
                     // Add the entered name to the poster
                     ctx.font = "bold 20px Arial";
-                    ctx.fillStyle = "orange";
+                    ctx.fillStyle = "darkred"; // Change text color to dark red
                     ctx.textAlign = "right";
                     ctx.fillText(fullName, 480, 690);
 
@@ -105,7 +105,9 @@
                     // Show the download button and set the poster as the download link
                     const downloadButton = document.getElementById("downloadButton");
                     downloadButton.style.display = "block";
+                    // Set the download link to the poster image
                     downloadButton.href = posterImage.src;
+                    downloadButton.download = "poster.jpeg"; // Set the filename for download
                 };
             };
 
