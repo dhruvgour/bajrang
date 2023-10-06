@@ -82,8 +82,8 @@
                     // Calculate the position and size of the profile photo within the poster
                     const photoWidth = 150;
                     const photoHeight = 180;
-                    const photoX = (canvas.width - photoWidth) / 2;
-                    const photoY = (canvas.height - photoHeight - 20); // Adjusted for 20px bottom margin
+                    const photoX = canvas.width - photoWidth; // Rightmost position
+                    const photoY = canvas.height - photoHeight; // Bottommost position
 
                     // Draw the uploaded profile photo scaled to fit
                     ctx.drawImage(image, photoX, photoY, photoWidth, photoHeight);
@@ -96,7 +96,7 @@
 
                     // Create an image element for the poster
                     const posterImage = new Image();
-                    posterImage.src = canvas.toDataURL("image/png");
+                    posterImage.src = canvas.toDataURL("image/jpeg");
 
                     // Display the poster on the page
                     document.getElementById("posterPreview").innerHTML = "";
